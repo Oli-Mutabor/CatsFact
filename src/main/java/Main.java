@@ -26,11 +26,11 @@ public class Main {
         HttpGet request = new HttpGet(URI);
 
         CloseableHttpResponse response = httpClient.execute(request);
-        List<CatsFact> facts = mapper.readValue(response.getEntity().getContent(), new TypeReference<List<CatsFact>>() {
+        List<CatsFact> facts = mapper.readValue(response.getEntity().getContent(), new TypeReference<>() {
         });
         System.out.println();
 
-        facts.stream().filter(value -> value.getUpvotes() != null && Integer.parseInt(value.getUpvotes()) > 0)
+        facts.stream().filter(value -> value.getUpvotes() > 0)
                 .forEach(System.out::println);
 
     }
